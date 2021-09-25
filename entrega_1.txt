@@ -1,0 +1,11 @@
+Entrega 1 - La Rosa, Martina
+
+- Mi impresion inicial del problema es que parece un buen ejercicio para empezar a programar restricciones (en este caso prendas incopatibles para los lavados) cuando se quiere obtener la soluciòn del problema.
+Me parece una buena motivación el ranking de mejores tiempo para obtener un buen resultado.
+
+- La primer idea que tuve fue recorrer el total del archivo guardando en un diccionario las distintas restricciones que tienen las prendas para lavarse y otro donde se indique el tiempo que tarda cada prenda. Luego buscar la mejor convinación iniciando por una prenda en particular.
+
+- comentarios sobre los cambios que hagan en el codigo a medida que intentan mejorar el resultado
+
+- comentarios finales
+
