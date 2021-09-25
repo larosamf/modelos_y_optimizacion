@@ -25,24 +25,24 @@ def lavanderia():
 	prendas_ordenadas_por_tiempo = sorted(prendas_ordenadas_por_tiempo, key=lambda x : int(tiempos_lavado[x]))
 
 	numero_lavado = 1
-	posicion_segunda_prenda = -2
+	posicion_segunda_prenda = 1
 	while prendas_ordenadas_por_tiempo != []:
-		prenda = prendas_ordenadas_por_tiempo[-1]
-		segunda_mayor = prendas_ordenadas_por_tiempo[posicion_segunda_prenda]
+		prenda = prendas_ordenadas_por_tiempo[0]
+		segunda_prenda = prendas_ordenadas_por_tiempo[posicion_segunda_prenda]
 		
-		son_compatible = not (segunda_mayor in restricciones[prenda])
+		son_compatible = not (segunda_prenda in restricciones[prenda])
 		
 		if son_compatible:
 			resultado_lavados.append([prenda, numero_lavado])
-			resultado_lavados.append([segunda_mayor, numero_lavado])
+			resultado_lavados.append([segunda_prenda, numero_lavado])
 			
 			prendas_ordenadas_por_tiempo.remove(prenda)
-			prendas_ordenadas_por_tiempo.remove(segunda_mayor)
+			prendas_ordenadas_por_tiempo.remove(segunda_prenda)
 
 			numero_lavado += 1
-			posicion_segunda_prenda = -2
+			posicion_segunda_prenda = 1
 		else:
-			posicion_segunda_prenda -= 1
+			posicion_segunda_prenda += 1
 
 	guardar_resultado(resultado_lavados)
 

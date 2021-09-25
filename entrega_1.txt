@@ -5,7 +5,10 @@ Me parece una buena motivación el ranking de mejores tiempo para obtener un bue
 
 - La primer idea que tuve fue recorrer el total del archivo guardando en un diccionario las distintas restricciones que tienen las prendas para lavarse y otro donde se indique el tiempo que tarda cada prenda. Luego buscar la mejor convinación iniciando por una prenda en particular.
 
-- comentarios sobre los cambios que hagan en el codigo a medida que intentan mejorar el resultado
+- Cambios:
+	- Tener un array de las prendas ordenadas por su tiempo de lavado.
+	- Como los lavados tendrán como tiempo de lavado el de la mayor prenda, conviene que la prenda de mayor tiempo se lave con la segunda de mayor tiempo de lavado que sea compatible con esa prenda. De lo contraría se desprediciará una prenda de menor tiempo de lavado. 
+	- Tomo el caso contrarío, la prenda de menor tiempo con la siguiente de menor tiempo compatible.
 
 - comentarios finales
 
