@@ -1,14 +1,14 @@
 Entrega 1 - La Rosa, Martina
 
-- Mi impresion inicial del problema es que parece un buen ejercicio para empezar a programar restricciones (en este caso prendas incopatibles para los lavados) cuando se quiere obtener la soluciòn del problema.
-Me parece una buena motivación el ranking de mejores tiempo para obtener un buen resultado.
+- Mi impresión inicial del problema es que parece un buen ejercicio para empezar a programar restricciones (en este caso prendas incompatibles para los lavados) cuando se quiere obtener la solución del problema.
+Me parece una buena motivación el ranking de mejores tiempos para obtener un buen resultado.
 
-- La primer idea que tuve fue recorrer el total del archivo guardando en un diccionario las distintas restricciones que tienen las prendas para lavarse y otro donde se indique el tiempo que tarda cada prenda. Luego buscar la mejor convinación iniciando por una prenda en particular.
+- La primer idea que tuve fue recorrer el total del archivo guardando en un diccionario las distintas restricciones que tienen las prendas para lavarse y otro donde se indique el tiempo que tarda cada prenda. Luego buscar la mejor combinación iniciando por una prenda en particular.
 
 - Cambios:
-	- Tener un array de las prendas ordenadas por su tiempo de lavado.
-	- Como los lavados tendrán como tiempo de lavado el de la mayor prenda, conviene que la prenda de mayor tiempo se lave con la segunda de mayor tiempo de lavado que sea compatible con esa prenda. De lo contraría se desprediciará una prenda de menor tiempo de lavado. 
-	- Tomo el caso contrarío, la prenda de menor tiempo con la siguiente de menor tiempo compatible.
+	1. Tener un array de las prendas ordenadas por su tiempo de lavado.
+	2. Como los lavados tendrán como tiempo de lavado el de la mayor prenda, conviene que la prenda de mayor tiempo se lave con la segunda de mayor tiempo de lavado que sea compatible con esa prenda. De lo contrario se desperdiciará una prenda de menor tiempo de lavado. 
+	3. Tomo el caso contrario al (2), agrupo partiendo de la prenda de menor tiempo con la siguiente de menor tiempo compatible.
 
-- comentarios finales
-
+- Comentarios finales:
+	Se obtuvieron los mismos resultados con las implementaciones (2) y (3) mencionadas anteriormente. Este resultado es el esperado ya que al ser 20 prendas se van agrupando de dos en dos, evitando las restricciones (haciendo saltos al siguiente en esos casos), lo cual resultaría de igual forma sea que empecemos de la prenda de mayor tiempo de lavado o de la de menor.
