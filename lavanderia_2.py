@@ -54,7 +54,7 @@ def ordenar_prendas_ordenadas_y_restricciones():
 
 def obtener_compatibilidad_con_prendas_de_lavado(prenda, otras_prendas, restricciones):
 	for x in otras_prendas:
-		son_compatible = not (prenda in restricciones[x])
+		son_compatible = (not (prenda in restricciones[x])) and (not (x in restricciones[prenda]))
 		if not son_compatible: return False
 	return True
 

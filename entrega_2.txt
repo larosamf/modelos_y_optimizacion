@@ -3,7 +3,9 @@ Ideas de cómo fui resolviendo esta instancia:
 
 
 Comentarios sobre los cambios que se hicieron en el código a medida que intenté mejorar el resultado:
-Implementación 1: Al toparme con una prenda que es incompatible con alguna de las prendas del lavado que estoy armando debo saltearla y continuar con la siguiente. Si corto el lavado en ese momento podría perder la posibilidad de seguir agregando ropa a ese lavado.
+Implementación 1: 
+	- Al toparme con una prenda que es incompatible con alguna de las prendas del lavado que estoy armando debo saltearla y continuar con la siguiente. Si corto el lavado en ese momento podría perder la posibilidad de seguir agregando ropa a ese lavado.
+	- Se debe tener en cuenta que las restricciones no son ida y vuelta, por ejemplo la prenda 1 tiene como restricción la prenda 11. Pero la 11 no tiene a la 1.
 
 
 Comentarios finales:
