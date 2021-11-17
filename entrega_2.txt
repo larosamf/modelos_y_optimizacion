@@ -1,0 +1,9 @@
+Ideas de cómo fui resolviendo esta instancia:
+1. Como primer acercamiento a un mejor resultado, buscaré continuar con la lógica de la primera entrega utilizando (si es conveniente) más de una prenda por lavado. Es decir, tomaré la mayor cantidad de prendas posibles en el lavado de la prenda con mayor tiempo de lavado y así sucesivamente.
+
+
+Comentarios sobre los cambios que se hicieron en el código a medida que intenté mejorar el resultado:
+Implementación 1: Al toparme con una prenda que es incompatible con alguna de las prendas del lavado que estoy armando debo saltearla y continuar con la siguiente. Si corto el lavado en ese momento podría perder la posibilidad de seguir agregando ropa a ese lavado.
+
+
+Comentarios finales:
