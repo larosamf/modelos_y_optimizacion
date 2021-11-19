@@ -1,11 +1,18 @@
 Ideas de cómo fui resolviendo esta instancia:
 1. Como primer acercamiento a un mejor resultado, buscaré continuar con la lógica de la primera entrega utilizando (si es conveniente) más de una prenda por lavado. Es decir, tomaré la mayor cantidad de prendas posibles en el lavado de la prenda con mayor tiempo de lavado y así sucesivamente.
+2. A partir de la implementación 1, se me ocurrió que al agrupar las dos prendas con mayor tiempo de lavado en el lavado 1 me pueden quedar el resto de las prendas sumando mayor cantidad de tiempo de lavado por no poder agruparse con una de esas que si las lavara por separado pudiendo agruparlas con las otras prendas. Por esta razón puedo: 
+	a. iniciar cada lavado con una prenda random
+	b. plantear dos lavados 1 donde en uno no agrego alguna prendas (por ejemplo las pares) y corroboro al final cuáles de las que no agregué puedo agrupar en ese lavado. Luego, veo qué lavado queda con mayor cantidad de prendas.
 
 
 Comentarios sobre los cambios que se hicieron en el código a medida que intenté mejorar el resultado:
 Implementación 1: 
 	- Al toparme con una prenda que es incompatible con alguna de las prendas del lavado que estoy armando debo saltearla y continuar con la siguiente. Si corto el lavado en ese momento podría perder la posibilidad de seguir agregando ropa a ese lavado.
 	- Se debe tener en cuenta que las restricciones no son ida y vuelta, por ejemplo la prenda 1 tiene como restricción la prenda 11. Pero la 11 no tiene a la 1.
+Implementación 2.a: 
+	- La primera implementación debo cambiarla al tomar la primera prenda del lavado, en este caso no sería la prenda en la posición -1 del array de prendas ordenadas por tiempo sino una random.
 
 
 Comentarios finales:
+
+

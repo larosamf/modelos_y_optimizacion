@@ -1,5 +1,6 @@
 FILE_NAME = "segundo_problema.txt"
 FILE_RESULTADO = "resultado_2.txt"
+import random
 
 
 def lavanderia():
@@ -15,7 +16,10 @@ def lavanderia():
 		print(f"Cantidad de prendas sin asignar: {len(prendas_sin_asignar)}")
 		resultado_lavados[numero_lavado] = []
 		while prendas_ordenadas_por_tiempo != []:
-			prenda = prendas_ordenadas_por_tiempo[-1]
+			if len(resultado_lavados[numero_lavado]) == 0:
+				prenda = random.choice(prendas_ordenadas_por_tiempo)
+			else:
+				prenda = prendas_ordenadas_por_tiempo[-1]
 
 			es_compatible = obtener_compatibilidad_con_prendas_de_lavado(prenda, resultado_lavados[numero_lavado], restricciones)
 			if es_compatible:
