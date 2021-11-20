@@ -1,8 +1,11 @@
 Ideas de cómo fui resolviendo esta instancia:
 1. Como primer acercamiento a un mejor resultado, buscaré continuar con la lógica de la primera entrega utilizando (si es conveniente) más de una prenda por lavado. Es decir, tomaré la mayor cantidad de prendas posibles en el lavado de la prenda con mayor tiempo de lavado y así sucesivamente.
 2. A partir de la implementación 1, se me ocurrió que al agrupar las dos prendas con mayor tiempo de lavado en el lavado 1 me pueden quedar el resto de las prendas sumando mayor cantidad de tiempo de lavado por no poder agruparse con una de esas que si las lavara por separado pudiendo agruparlas con las otras prendas. Por esta razón puedo: 
-	a. iniciar cada lavado con una prenda random
-	b. plantear dos lavados 1 donde en uno no agrego alguna prendas (por ejemplo las pares) y corroboro al final cuáles de las que no agregué puedo agrupar en ese lavado. Luego, veo qué lavado queda con mayor cantidad de prendas.
+	a. Iniciar cada lavado con una prenda random.
+	b. Plantear dos lavados, uno como en la implementación 1 y otro donde se agreguen sólo algunas prendas (por ejemplo las pares) y corroboro al final cuáles de las que no agregué puedo agrupar en ese lavado. Luego, veo qué lavado queda con mayor cantidad de prendas. Así tengo la posibilidad de tener otras combinaciones de prendas en el lavado.
+	c. Idem b, pero eligiendo la mejor opción como la que contenga más tiempos de lavado. Es decir, la cual la suma de los tiempos de lavado de sus prendas sume más.
+3. Voy a plantear la implementación 2.c pero partiendo de la prenda que menor tiempo de lavado tiene a la de mayor.
+4. A partir de la implementación 2.c, agrego un tercer lavado a competir con los otros dos que sería el de la implementación 2.a.
 
 
 Comentarios sobre los cambios que se hicieron en el código a medida que intenté mejorar el resultado:
@@ -11,8 +14,18 @@ Implementación 1:
 	- Se debe tener en cuenta que las restricciones no son ida y vuelta, por ejemplo la prenda 1 tiene como restricción la prenda 11. Pero la 11 no tiene a la 1.
 Implementación 2.a: 
 	- La primera implementación debo cambiarla al tomar la primera prenda del lavado, en este caso no sería la prenda en la posición -1 del array de prendas ordenadas por tiempo sino una random.
-
+Implementación 2.b:
+	- Tengo que armar dos arrays con posibles soluciones de cada lavado.
+	- Voy a tomar las prendas en posiciones impares del array ordenado para el segundo array.
+	- Luego de la primera iteración, voy a iterar sobre las prendas en posiciones pares para ver si se pueden agregar al segundo lavado.
+	- Tengo que elegir el que contenga más prendas.
+Implementación 2.c: 
+	- Devolver el tiempo de lavados en la función que los calcula.
+	- Cree una función encargada de elegir la mejor opción entre las dos obtenidas.
+Implementación 4:
+	- Hacer refactor del código para agrupar en funciones la obtención de cada opción de lavado.
 
 Comentarios finales:
-
-
+- No se obtienen mejores resultados si se inicia cada lavado con una prenda random.
+- Se obtienen peores resultados si se inicia la repartición de prendas desde la que tiene menor tiempo de lavado.
+- Al incorporar una tercera opción que inicializa el lavado con una prenda random, se puede obtener en algunas corridas un resultado mejor al de la Implementación 1. Pero esto depende de una elección random, por lo que se debe realizar varias corridas hasta obtener un mejor resultado.
