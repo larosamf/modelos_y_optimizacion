@@ -9,24 +9,56 @@ def lavanderia():
 
 	numero_lavado = 1
 	resultado_lavados = {}
+	print(f"Prendas: {prendas_sin_asignar}")
 
 	while prendas_sin_asignar != []:
-		prendas_ordenadas_por_tiempo = prendas_sin_asignar.copy()
 		print(f"Número de lavado: {numero_lavado}")
 		print(f"Cantidad de prendas sin asignar: {len(prendas_sin_asignar)}")
 		resultado_lavados[numero_lavado] = []
-		while prendas_ordenadas_por_tiempo != []:
-			if len(resultado_lavados[numero_lavado]) == 0:
-				prenda = random.choice(prendas_ordenadas_por_tiempo)
-			else:
-				prenda = prendas_ordenadas_por_tiempo[-1]
+		primera_opcion_lavado = []
+		segunda_opcion_lavado = []
+		opcion_final_lavado = []
 
-			es_compatible = obtener_compatibilidad_con_prendas_de_lavado(prenda, resultado_lavados[numero_lavado], restricciones)
+		#Obtengo primera opción de lavado como en la Implementación 1
+		for i in range(-1,-len(prendas_sin_asignar)-1,-1):
+			prenda = prendas_sin_asignar[i]
+
+			es_compatible = obtener_compatibilidad_con_prendas_de_lavado(prenda, primera_opcion_lavado, restricciones)
 			if es_compatible:
-				resultado_lavados[numero_lavado].append(prenda)
-				prendas_sin_asignar.remove(prenda)
-			
-			prendas_ordenadas_por_tiempo.remove(prenda)
+				primera_opcion_lavado.append(prenda)
+		
+
+		#Obtengo segundo opción de lavado tomando primero las prendas en posición impar
+		for i in range(-1,-len(prendas_sin_asignar)-1,-2):
+			prenda = prendas_sin_asignar[i]
+
+			es_compatible = obtener_compatibilidad_con_prendas_de_lavado(prenda, segunda_opcion_lavado, restricciones)
+			if es_compatible:
+				segunda_opcion_lavado.append(prenda)
+		
+		#Agrego prendas en posicion par a segunda opción
+		for i in range(-2,-len(prendas_sin_asignar)-1,-2):
+			prenda = prendas_sin_asignar[i]
+
+			es_compatible = obtener_compatibilidad_con_prendas_de_lavado(prenda, segunda_opcion_lavado, restricciones)
+			if es_compatible:
+				segunda_opcion_lavado.append(prenda)
+
+
+		#Elijo mejor opción por la cantidad de prendas que se lavarían
+		if len(primera_opcion_lavado) > len(segunda_opcion_lavado):
+			print("GAna 1")
+			opcion_final_lavado = primera_opcion_lavado.copy()
+		else: 
+			print("GAna 2")
+			opcion_final_lavado = segunda_opcion_lavado.copy()
+
+
+		#Asigno prendas a lavado y las elimino de las no asignadas
+		resultado_lavados[numero_lavado] = opcion_final_lavado
+		for prenda in opcion_final_lavado:
+			prendas_sin_asignar.remove(prenda)
+
 		print(f"Prendas en lavado {numero_lavado}: {resultado_lavados[numero_lavado]}")
 		numero_lavado += 1
 
