@@ -20,7 +20,7 @@ def lavanderia():
 		opcion_final_lavado = []
 
 		#Obtengo primera opción de lavado como en la Implementación 1
-		for i in range(-1,-len(prendas_sin_asignar)-1,-1):
+		for i in range(0,len(prendas_sin_asignar)):
 			prenda = prendas_sin_asignar[i]
 
 			es_compatible = obtener_compatibilidad_con_prendas_de_lavado(prenda, primera_opcion_lavado, restricciones)
@@ -29,7 +29,7 @@ def lavanderia():
 		
 
 		#Obtengo segundo opción de lavado tomando primero las prendas en posición impar
-		for i in range(-1,-len(prendas_sin_asignar)-1,-2):
+		for i in range(0,len(prendas_sin_asignar),2):
 			prenda = prendas_sin_asignar[i]
 
 			es_compatible = obtener_compatibilidad_con_prendas_de_lavado(prenda, segunda_opcion_lavado, restricciones)
@@ -37,7 +37,7 @@ def lavanderia():
 				segunda_opcion_lavado.append(prenda)
 		
 		#Agrego prendas en posicion par a segunda opción
-		for i in range(-2,-len(prendas_sin_asignar)-1,-2):
+		for i in range(1,len(prendas_sin_asignar),2):
 			prenda = prendas_sin_asignar[i]
 
 			es_compatible = obtener_compatibilidad_con_prendas_de_lavado(prenda, segunda_opcion_lavado, restricciones)
