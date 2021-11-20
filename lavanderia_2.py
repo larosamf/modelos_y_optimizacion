@@ -4,7 +4,7 @@ import random
 
 
 def lavanderia():
-	prendas_sin_asignar, restricciones = ordenar_prendas_ordenadas_y_restricciones()
+	prendas_sin_asignar, restricciones, tiempos_lavado = ordenar_prendas_ordenadas_y_restricciones()
 	print(f"Total de prendas: {len(prendas_sin_asignar)}")
 
 	numero_lavado = 1
@@ -46,11 +46,11 @@ def lavanderia():
 
 
 		#Elijo mejor opción por la cantidad de prendas que se lavarían
-		if len(primera_opcion_lavado) > len(segunda_opcion_lavado):
-			print("GAna 1")
+		if obtener_tiempo_de_lavado(primera_opcion_lavado, tiempos_lavado) > obtener_tiempo_de_lavado(segunda_opcion_lavado, tiempos_lavado):
+			print("Gana opción 1")
 			opcion_final_lavado = primera_opcion_lavado.copy()
 		else: 
-			print("GAna 2")
+			print("Gana opción 2")
 			opcion_final_lavado = segunda_opcion_lavado.copy()
 
 
@@ -85,7 +85,7 @@ def ordenar_prendas_ordenadas_y_restricciones():
 				prendas_ordenadas_por_tiempo.append(int(line[1]))
 
 	prendas_ordenadas_por_tiempo = sorted(prendas_ordenadas_por_tiempo, key=lambda x : int(tiempos_lavado[x]))
-	return prendas_ordenadas_por_tiempo, restricciones
+	return prendas_ordenadas_por_tiempo, restricciones, tiempos_lavado
 
 
 def obtener_compatibilidad_con_prendas_de_lavado(prenda, otras_prendas, restricciones):
@@ -93,6 +93,12 @@ def obtener_compatibilidad_con_prendas_de_lavado(prenda, otras_prendas, restricc
 		son_compatible = (not (prenda in restricciones[x])) and (not (x in restricciones[prenda]))
 		if not son_compatible: return False
 	return True
+
+def obtener_tiempo_de_lavado(lavado, tiempos_lavado):
+	suma_tiempos_lavado = 0
+	for prenda in lavado:
+		suma_tiempos_lavado += tiempos_lavado[prenda]
+	return suma_tiempos_lavado
 
 
 def guardar_resultado(lavados):
