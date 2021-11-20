@@ -15,43 +15,25 @@ def lavanderia():
 		print(f"Número de lavado: {numero_lavado}")
 		print(f"Cantidad de prendas sin asignar: {len(prendas_sin_asignar)}")
 		resultado_lavados[numero_lavado] = []
-		primera_opcion_lavado = []
-		segunda_opcion_lavado = []
+		primera_opcion_lavado = obtener_lavado_a_partir_del_orden_de_tiempos(prendas_sin_asignar, restricciones)
+		segunda_opcion_lavado = obtener_lavado_de_a_saltos(prendas_sin_asignar, restricciones)
+		tercera_opcion_lavado = obtener_lavado_partiendo_de_random(prendas_sin_asignar, restricciones)
 		opcion_final_lavado = []
-
-		#Obtengo primera opción de lavado como en la Implementación 1
-		for i in range(0,len(prendas_sin_asignar)):
-			prenda = prendas_sin_asignar[i]
-
-			es_compatible = obtener_compatibilidad_con_prendas_de_lavado(prenda, primera_opcion_lavado, restricciones)
-			if es_compatible:
-				primera_opcion_lavado.append(prenda)
-		
-
-		#Obtengo segundo opción de lavado tomando primero las prendas en posición impar
-		for i in range(0,len(prendas_sin_asignar),2):
-			prenda = prendas_sin_asignar[i]
-
-			es_compatible = obtener_compatibilidad_con_prendas_de_lavado(prenda, segunda_opcion_lavado, restricciones)
-			if es_compatible:
-				segunda_opcion_lavado.append(prenda)
-		
-		#Agrego prendas en posicion par a segunda opción
-		for i in range(1,len(prendas_sin_asignar),2):
-			prenda = prendas_sin_asignar[i]
-
-			es_compatible = obtener_compatibilidad_con_prendas_de_lavado(prenda, segunda_opcion_lavado, restricciones)
-			if es_compatible:
-				segunda_opcion_lavado.append(prenda)
 
 
 		#Elijo mejor opción por la cantidad de prendas que se lavarían
-		if obtener_tiempo_de_lavado(primera_opcion_lavado, tiempos_lavado) > obtener_tiempo_de_lavado(segunda_opcion_lavado, tiempos_lavado):
+		tiempos_1 = obtener_tiempo_de_lavado(primera_opcion_lavado, tiempos_lavado)
+		tiempos_2 = obtener_tiempo_de_lavado(segunda_opcion_lavado, tiempos_lavado)
+		tiempos_3 = obtener_tiempo_de_lavado(tercera_opcion_lavado, tiempos_lavado)		
+		if tiempos_1 > tiempos_2 and tiempos_1 > tiempos_3:
 			print("Gana opción 1")
 			opcion_final_lavado = primera_opcion_lavado.copy()
-		else: 
+		elif tiempos_2 > tiempos_1 and tiempos_2 > tiempos_3:
 			print("Gana opción 2")
 			opcion_final_lavado = segunda_opcion_lavado.copy()
+		else: 
+			print("Gana opción 3")
+			opcion_final_lavado = tercera_opcion_lavado.copy()
 
 
 		#Asigno prendas a lavado y las elimino de las no asignadas
@@ -87,6 +69,46 @@ def ordenar_prendas_ordenadas_y_restricciones():
 	prendas_ordenadas_por_tiempo = sorted(prendas_ordenadas_por_tiempo, key=lambda x : int(tiempos_lavado[x]))
 	return prendas_ordenadas_por_tiempo, restricciones, tiempos_lavado
 
+def obtener_lavado_a_partir_del_orden_de_tiempos(prendas_sin_asignar, restricciones):
+	#Obtengo primera opción de lavado como en la Implementación 1
+	lavado = []
+	for i in range(-1,-len(prendas_sin_asignar)-1,-1):
+		prenda = prendas_sin_asignar[i]
+
+		es_compatible = obtener_compatibilidad_con_prendas_de_lavado(prenda, lavado, restricciones)
+		if es_compatible:
+			lavado.append(prenda)
+	return lavado
+
+def obtener_lavado_de_a_saltos(prendas_sin_asignar, restricciones):
+	lavado = []
+	#Obtengo segundo opción de lavado tomando primero las prendas en posición impar
+	for i in range(-1,-len(prendas_sin_asignar)-1,-2):
+		prenda = prendas_sin_asignar[i]
+
+		es_compatible = obtener_compatibilidad_con_prendas_de_lavado(prenda, lavado, restricciones)
+		if es_compatible:
+			lavado.append(prenda)
+		
+	#Agrego prendas en posicion par a segunda opción
+	for i in range(-2,-len(prendas_sin_asignar)-1,-2):
+		prenda = prendas_sin_asignar[i]
+
+		es_compatible = obtener_compatibilidad_con_prendas_de_lavado(prenda, lavado, restricciones)
+		if es_compatible:
+			lavado.append(prenda)
+	return lavado
+
+def obtener_lavado_partiendo_de_random(prendas_sin_asignar, restricciones):
+	lavado = [random.choice(prendas_sin_asignar)]
+	for i in range(-1,-len(prendas_sin_asignar)-1,-1):
+		prenda = prendas_sin_asignar[i]
+		if prenda in lavado: continue
+
+		es_compatible = obtener_compatibilidad_con_prendas_de_lavado(prenda, lavado, restricciones)
+		if es_compatible:
+			lavado.append(prenda)
+	return lavado
 
 def obtener_compatibilidad_con_prendas_de_lavado(prenda, otras_prendas, restricciones):
 	for x in otras_prendas:
